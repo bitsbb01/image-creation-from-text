@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f1e8">
+  <meta name="description" content="Turn a written idea into an original image with JGJG Image Studio.">
+  <title>JGJG Image Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="JGJG Image Studio home">
+      <span class="brand-mark" aria-hidden="true">✦</span>
+      <span><strong>JGJG</strong><small>IMAGE STUDIO</small></span>
+    </a>
+    <div class="topbar-note"><span class="status-dot"></span> Your creative space</div>
+  </header>
+
+  <main class="shell">
+    <section class="intro">
+      <p class="eyebrow">A picture begins with an idea</p>
+      <h1>Imagine it.<br><em>Bring it to life.</em></h1>
+      <p class="intro-copy">Describe the image you have in mind. Choose a look, then create and save it.</p>
+    </section>
+
+    <section class="studio-grid" aria-label="Image creator">
+      <form class="creator-card" id="creatorForm">
+        <div class="card-heading"><span class="step">01</span><h2>Describe your image</h2></div>
+        <label class="field-label" for="prompt">What would you like to see?</label>
+        <textarea id="prompt" name="prompt" maxlength="4000" placeholder="A curious baby dragon exploring a moonlit garden filled with glowing flowers…" required></textarea>
+        <div class="prompt-meta"><span>Be as descriptive as you like</span><span id="charCount">0 / 4000</span></div>
+
+        <div class="card-heading second-heading"><span class="step">02</span><h2>Choose a style</h2></div>
+        <div class="style-grid" role="group" aria-label="Image style">
+          <button class="style-option selected" type="button" data-style="storybook" aria-pressed="true"><span class="style-icon">✿</span><span>Storybook</span></button>
+          <button class="style-option" type="button" data-style="fantasy" aria-pressed="false"><span class="style-icon">✧</span><span>Fantasy</span></button>
+          <button class="style-option" type="button" data-style="coloring" aria-pressed="false"><span class="style-icon">✎</span><span>Coloring page</span></button>
+          <button class="style-option" type="button" data-style="photoreal" aria-pressed="false"><span class="style-icon">◉</span><span>Photorealistic</span></button>
+          <button class="style-option" type="button" data-style="watercolor" aria-pressed="false"><span class="style-icon">◌</span><span>Watercolor</span></button>
+          <button class="style-option" type="button" data-style="custom" aria-pressed="false"><span class="style-icon">＋</span><span>Use my prompt</span></button>
+        </div>
+        <input type="hidden" id="style" value="storybook">
+
+        <div class="options-row">
+          <label class="select-field"><span>Shape</span><select id="size"><option value="1024x1024">Square</option><option value="1024x1536">Portrait</option><option value="1536x1024">Landscape</option></select></label>
+          <label class="select-field"><span>Detail</span><select id="quality"><option value="medium">Standard</option><option value="high">High</option></select></label>
+        </div>
+
+        <button class="generate-button" id="generateButton" type="submit"><span class="button-star">✦</span><span id="buttonText">Create image</span><span class="button-arrow">↗</span></button>
+        <p class="privacy-note"><span aria-hidden="true">♢</span> Your images stay in this browser session. Generation uses your studio’s configured image service.</p>
+        <p class="form-message" id="formMessage" role="status" aria-live="polite"></p>
+      </form>
+
+      <section class="preview-card" aria-label="Image preview">
+        <div class="preview-head"><div><p class="eyebrow">YOUR CANVAS</p><h2 id="previewTitle">Ready when you are</h2></div><span class="sparkle" aria-hidden="true">✧</span></div>
+        <div class="canvas" id="canvas">
+          <div class="canvas-empty" id="emptyState"><div class="empty-art" aria-hidden="true"><span class="sun"></span><span class="hill hill-one"></span><span class="hill hill-two"></span><span class="tiny-star star-one">✦</span><span class="tiny-star star-two">✧</span></div><p>Your next idea could be a picture</p><small>Your creation will appear here</small></div>
+          <div class="loading-state" id="loadingState" hidden><div class="loader-orbit"><span>✦</span></div><p>Creating your image</p><small>This can take a little while. Keep this page open.</small></div>
+          <img id="generatedImage" alt="Generated image preview" hidden>
+        </div>
+        <div class="preview-footer"><p id="imageCaption">A little imagination goes a long way.</p><a class="download-button" id="downloadButton" href="#" download="jgjg-image.png" hidden><span>↓</span> Download PNG</a></div>
+      </section>
+    </section>
+    <footer><span>Made with imagination</span><span>JGJG Books · Image Studio</span></footer>
+  </main>
+
+  <dialog id="loginDialog" class="login-dialog">
+    <form id="loginForm" method="dialog">
+      <span class="login-mark">✦</span><p class="eyebrow">WELCOME BACK</p><h2>Open your studio</h2><p class="login-copy">Enter the studio password to continue.</p>
+      <label class="field-label" for="password">Studio password</label><input id="password" name="password" type="password" autocomplete="current-password" required>
+      <p class="form-message" id="loginMessage" role="status" aria-live="polite"></p>
+      <button class="generate-button" type="submit" id="loginButton">Continue <span class="button-arrow">↗</span></button>
+    </form>
+  </dialog>
+  <script src="/app.js" defer></script>
+</body>
+</html>
